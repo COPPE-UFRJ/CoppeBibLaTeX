@@ -1,21 +1,274 @@
-%%% examples/sample-numeric-pt.tex
+%%% examples/sample-pt.tex
 \documentclass[a4paper,12pt]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
+\usepackage[brazilian]{babel}
 \usepackage{csquotes}
 \usepackage{hyperref}
-\usepackage[backend=biber,style=coppe-numeric,citestyle=coppe-numeric,language=auto,autolang=other,sorting=none]{biblatex}
+
+\usepackage[backend=biber,style=coppe-numeric,citestyle=coppe-numeric,language=auto,autolang=other,sorting=nyt]{biblatex}
+
 \DeclareLanguageMapping{brazilian}{brazilian-coppe}
-\DeclareLanguageMapping{english}{english-coppe}
-\DeclareLanguageMapping{spanish}{spanish-coppe}
+
 \addbibresource{refs.bib}
-\title{COPPE (PT-BR) — Exemplo Numérico}
-\author{Time COPPE}
+\title{Exemplo COPPE (PT-BR)}
+\author{Geraldo Xexéo}
 \date{\today}
-\begin{document}\maketitle
-Chamadas: \citep{art-1-complete-doi}, \citep{art-2-missing-doi-has-url}, \citep{edital-1-complete}, \citep{leg-1-complete},
-\citep{inproc-1-complete}, \citep{proc-1-complete}, \citep{online-2-url-only-no-date}, \citep{soft-1-complete}, \citep{press-1-complete}, \citep{interv-1-complete}.
-Forma textual: \citet{book-1-complete}; \citet{news-1-complete}.
-\printbibliography[title={Referências (ordem de citação)}]
+\begin{document}
+
+\maketitle
+
+\section*{Artigos}
+
+Um artigo do tipo artigo, completo e com DOI, deve ser citado ao longo do texto como \citet{art-1-complete-doi}, e entre parênteses na forma \citep{art-1-complete-doi}.
+
+\fullcite{art-1-complete-doi}
+
+Um artigo do tipo artigo, sem DOI e com URL/urldate, deve ser citado ao longo do texto como \citet{art-2-missing-doi-has-url}, e entre parênteses na forma \citep{art-2-missing-doi-has-url}.
+
+\fullcite{art-2-missing-doi-has-url}
+
+Um artigo do tipo artigo, sem autor (pode recorrer ao título como rótulo), deve ser citado ao longo do texto como \citet{art-3-missing-author}, e entre parênteses na forma \citep{art-3-missing-author}.
+
+\fullcite{art-3-missing-author}
+
+Uma matéria do tipo revista online (article/magazineonline), completa com data e nota, deve ser citada ao longo do texto como \citet{mag-1-complete}, e entre parênteses na forma \citep{mag-1-complete}.
+
+\fullcite{mag-1-complete}
+
+Uma matéria do tipo revista online (article/magazineonline), sem URL, deve ser citada ao longo do texto como \citet{mag-2-missing-url}, e entre parênteses na forma \citep{mag-2-missing-url}.
+
+\fullcite{mag-2-missing-url}
+
+Uma matéria do tipo jornal (article/newspaper), com caderno/seção e páginas, deve ser citada ao longo do texto como \citet{news-1-complete}, e entre parênteses na forma \citep{news-1-complete}.
+
+\fullcite{news-1-complete}
+
+Uma matéria do tipo jornal (article/newspaper), sem páginas, deve ser citada ao longo do texto como \citet{news-2-missing-pages}, e entre parênteses na forma \citep{news-2-missing-pages}.
+
+\fullcite{news-2-missing-pages}
+
+Uma publicação do tipo DOU (article/dou), completa com seção e edição, deve ser citada ao longo do texto como \citet{dou-1-complete}, e entre parênteses na forma \citep{dou-1-complete}.
+
+\fullcite{dou-1-complete}
+
+Uma publicação do tipo DOU (article/dou), sem indicação de seção, deve ser citada ao longo do texto como \citet{dou-2-missing-dousection}, e entre parênteses na forma \citep{dou-2-missing-dousection}.
+
+\fullcite{dou-2-missing-dousection}
+
+
+\section*{Relatórios e Editais}
+
+Um relatório genérico (report), completo, deve ser citado ao longo do texto como \citet{rep-1-generic-complete}, e entre parênteses na forma \citep{rep-1-generic-complete}.
+
+\fullcite{rep-1-generic-complete}
+
+Um relatório genérico (report), sem organização/instituição explícitas, deve ser citado ao longo do texto como \citet{rep-2-generic-missing-org}, e entre parênteses na forma \citep{rep-2-generic-missing-org}.
+
+\fullcite{rep-2-generic-missing-org}
+
+Um edital (report/edital), completo (com modalidade e objeto), deve ser citado ao longo do texto como \citet{edital-1-complete}, e entre parênteses na forma \citep{edital-1-complete}.
+
+\fullcite{edital-1-complete}
+
+Um edital (report/edital), sem modalidade, deve ser citado ao longo do texto como \citet{edital-2-missing-modalidade}, e entre parênteses na forma \citep{edital-2-missing-modalidade}.
+
+\fullcite{edital-2-missing-modalidade}
+
+Um edital (report/edital), sem objeto, deve ser citado ao longo do texto como \citet{edital-3-missing-objeto}, e entre parênteses na forma \citep{edital-3-missing-objeto}.
+
+\fullcite{edital-3-missing-objeto}
+
+
+\section*{Legislação}
+
+Uma norma legal (legislation), completa (com ementa), deve ser citada ao longo do texto como \citet{leg-1-complete}, e entre parênteses na forma \citep{leg-1-complete}.
+
+\fullcite{leg-1-complete}
+
+Uma norma legal (legislation), sem ementa, deve ser citada ao longo do texto como \citet{leg-2-missing-ementa}, e entre parênteses na forma \citep{leg-2-missing-ementa}.
+
+\fullcite{leg-2-missing-ementa}
+
+
+\section*{Livros e capítulos}
+
+Um livro (book), completo, deve ser citado ao longo do texto como \citet{book-1-complete}, e entre parênteses na forma \citep{book-1-complete}.
+
+\fullcite{book-1-complete}
+
+Um livro (book), sem autor mas com editor, deve ser citado ao longo do texto como \citet{book-2-missing-author-has-editor}, e entre parênteses na forma \citep{book-2-missing-author-has-editor}.
+
+\fullcite{book-2-missing-author-has-editor}
+
+Um livro (book), sem editora e local, deve ser citado ao longo do texto como \citet{book-3-missing-publisher-location}, e entre parênteses na forma \citep{book-3-missing-publisher-location}.
+
+\fullcite{book-3-missing-publisher-location}
+
+Um capítulo em coletânea (incollection), completo, deve ser citado ao longo do texto como \citet{incoll-1-complete}, e entre parênteses na forma \citep{incoll-1-complete}.
+
+\fullcite{incoll-1-complete}
+
+Um capítulo em coletânea (incollection), sem editor, deve ser citado ao longo do texto como \citet{incoll-2-missing-editor}, e entre parênteses na forma \citep{incoll-2-missing-editor}.
+
+\fullcite{incoll-2-missing-editor}
+
+Um capítulo dentro de livro (inbook), completo, deve ser citado ao longo do texto como \citet{inbook-1-complete}, e entre parênteses na forma \citep{inbook-1-complete}.
+
+\fullcite{inbook-1-complete}
+
+Um capítulo dentro de livro (inbook), sem edição, deve ser citado ao longo do texto como \citet{inbook-2-missing-edition}, e entre parênteses na forma \citep{inbook-2-missing-edition}.
+
+\fullcite{inbook-2-missing-edition}
+
+
+\section*{Anais e eventos (\string\printeventdate)}
+
+Um trabalho em anais (inproceedings), completo com evento e datas, deve ser citado ao longo do texto como \citet{inproc-1-complete}, e entre parênteses na forma \citep{inproc-1-complete}.
+
+\fullcite{inproc-1-complete}
+
+Um trabalho em anais (inproceedings), sem metadados de evento, deve ser citado ao longo do texto como \citet{inproc-2-missing-event}, e entre parênteses na forma \citep{inproc-2-missing-event}.
+
+\fullcite{inproc-2-missing-event}
+
+Um volume de anais (proceedings), completo, deve ser citado ao longo do texto como \citet{proc-1-complete}, e entre parênteses na forma \citep{proc-1-complete}.
+
+\fullcite{proc-1-complete}
+
+Um volume de anais (proceedings), sem metadados de evento, deve ser citado ao longo do texto como \citet{proc-2-missing-event}, e entre parênteses na forma \citep{proc-2-missing-event}.
+
+\fullcite{proc-2-missing-event}
+
+
+\section*{Acadêmicos, normas e web}
+
+Uma tese/dissertação (thesis), completa, deve ser citada ao longo do texto como \citet{thesis-1-complete}, e entre parênteses na forma \citep{thesis-1-complete}.
+
+\fullcite{thesis-1-complete}
+
+Uma tese/dissertação (thesis), sem tipo/instituição, deve ser citada ao longo do texto como \citet{thesis-2-missing-type-institution}, e entre parênteses na forma \citep{thesis-2-missing-type-institution}.
+
+\fullcite{thesis-2-missing-type-institution}
+
+Uma norma técnica (standard), completa, deve ser citada ao longo do texto como \citet{std-1-complete}, e entre parênteses na forma \citep{std-1-complete}.
+
+\fullcite{std-1-complete}
+
+Uma norma técnica (standard), sem organização/número, deve ser citada ao longo do texto como \citet{std-2-missing-organization-number}, e entre parênteses na forma \citep{std-2-missing-organization-number}.
+
+\fullcite{std-2-missing-organization-number}
+
+Um recurso online (online), com DOI, deve ser citado ao longo do texto como \citet{online-1-with-doi}, e entre parênteses na forma \citep{online-1-with-doi}.
+
+\fullcite{online-1-with-doi}
+
+Um recurso online (online), sem data (usa \texttt{urldate}), deve ser citado ao longo do texto como \citet{online-2-url-only-no-date}, e entre parênteses na forma \citep{online-2-url-only-no-date}.
+
+\fullcite{online-2-url-only-no-date}
+
+
+\section*{Manuais, dados e software}
+
+Um manual (manual), completo e com edição, deve ser citado ao longo do texto como \citet{manual-1-complete}, e entre parênteses na forma \citep{manual-1-complete}.
+
+\fullcite{manual-1-complete}
+
+Um manual (manual), sem organização, deve ser citado ao longo do texto como \citet{manual-2-missing-org}, e entre parênteses na forma \citep{manual-2-missing-org}.
+
+\fullcite{manual-2-missing-org}
+
+Um conjunto de dados (dataset), completo com versão/DOI, deve ser citado ao longo do texto como \citet{dataset-1-complete-doi}, e entre parênteses na forma \citep{dataset-1-complete-doi}.
+
+\fullcite{dataset-1-complete-doi}
+
+Um conjunto de dados (dataset), apenas com URL, deve ser citado ao longo do texto como \citet{dataset-2-url-only}, e entre parênteses na forma \citep{dataset-2-url-only}.
+
+\fullcite{dataset-2-url-only}
+
+Um software (software), completo (com versão e data), deve ser citado ao longo do texto como \citet{soft-1-complete}, e entre parênteses na forma \citep{soft-1-complete}.
+
+\fullcite{soft-1-complete}
+
+Um software (software), sem versão e sem data, deve ser citado ao longo do texto como \citet{soft-2-missing-version-date}, e entre parênteses na forma \citep{soft-2-missing-version-date}.
+
+\fullcite{soft-2-missing-version-date}
+
+
+\section*{Patentes e mídia}
+
+Uma patente (patent), completa (com titular, número e data), deve ser citada ao longo do texto como \citet{pat-1-complete}, e entre parênteses na forma \citep{pat-1-complete}.
+
+\fullcite{pat-1-complete}
+
+Uma patente (patent), sem titular, deve ser citada ao longo do texto como \citet{pat-2-missing-holder}, e entre parênteses na forma \citep{pat-2-missing-holder}.
+
+\fullcite{pat-2-missing-holder}
+
+Um vídeo (video), completo (com série/número), deve ser citado ao longo do texto como \citet{video-1-complete}, e entre parênteses na forma \citep{video-1-complete}.
+
+\fullcite{video-1-complete}
+
+Um vídeo (video), sem autor e com organização, deve ser citado ao longo do texto como \citet{video-2-missing-author-has-org}, e entre parênteses na forma \citep{video-2-missing-author-has-org}.
+
+\fullcite{video-2-missing-author-has-org}
+
+Um áudio/podcast (audio), completo (com série e número), deve ser citado ao longo do texto como \citet{audio-1-complete}, e entre parênteses na forma \citep{audio-1-complete}.
+
+\fullcite{audio-1-complete}
+
+Um áudio/podcast (audio), sem número do episódio, deve ser citado ao longo do texto como \citet{audio-2-missing-number}, e entre parênteses na forma \citep{audio-2-missing-number}.
+
+\fullcite{audio-2-missing-number}
+
+Um trabalho do tipo artwork/objeto digital (artwork), completo, deve ser citado ao longo do texto como \citet{art-obj-1-complete}, e entre parênteses na forma \citep{art-obj-1-complete}.
+
+\fullcite{art-obj-1-complete}
+
+Uma imagem/mapa (image), sem autor e com organização, deve ser citada ao longo do texto como \citet{img-1-missing-author-has-org}, e entre parênteses na forma \citep{img-1-missing-author-has-org}.
+
+\fullcite{img-1-missing-author-has-org}
+
+Um press release (pressrelease), completo, deve ser citado ao longo do texto como \citet{press-1-complete}, e entre parênteses na forma \citep{press-1-complete}.
+
+\fullcite{press-1-complete}
+
+Um press release (pressrelease), sem URL, deve ser citado ao longo do texto como \citet{press-2-missing-url}, e entre parênteses na forma \citep{press-2-missing-url}.
+
+\fullcite{press-2-missing-url}
+
+Uma carta (letter), completa (com destinatário), deve ser citada ao longo do texto como \citet{letter-1-complete}, e entre parênteses na forma \citep{letter-1-complete}.
+
+\fullcite{letter-1-complete}
+
+Uma carta (letter), sem destinatário, deve ser citada ao longo do texto como \citet{letter-2-missing-recipient}, e entre parênteses na forma \citep{letter-2-missing-recipient}.
+
+\fullcite{letter-2-missing-recipient}
+
+Um material não publicado (unpublished), completo (com data), deve ser citado ao longo do texto como \citet{unpub-1-complete}, e entre parênteses na forma \citep{unpub-1-complete}.
+
+\fullcite{unpub-1-complete}
+
+Um material não publicado (unpublished), sem data, deve ser citado ao longo do texto como \citet{unpub-2-missing-date}, e entre parênteses na forma \citep{unpub-2-missing-date}.
+
+\fullcite{unpub-2-missing-date}
+
+Uma entrevista (interview), completa (com entrevistador e local), deve ser citada ao longo do texto como \citet{interv-1-complete}, e entre parênteses na forma \citep{interv-1-complete}.
+
+\fullcite{interv-1-complete}
+
+Uma entrevista (interview), sem entrevistador, deve ser citada ao longo do texto como \citet{interv-2-missing-interviewer}, e entre parênteses na forma \citep{interv-2-missing-interviewer}.
+
+\fullcite{interv-2-missing-interviewer}
+
+Um item miscelâneo (misc), completo (com data), deve ser citado ao longo do texto como \citet{misc-1-complete}, e entre parênteses na forma \citep{misc-1-complete}.
+
+\fullcite{misc-1-complete}
+
+Um item miscelâneo (misc), sem autor e sem data, deve ser citado ao longo do texto como \citet{misc-2-missing-author-date}, e entre parênteses na forma \citep{misc-2-missing-author-date}.
+
+\fullcite{misc-2-missing-author-date}
+
+\printbibliography[title={Referências}]
 \end{document}
