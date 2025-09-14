@@ -1,0 +1,11 @@
+\ProvidesFile{coppe.dbx}[2025/09/13 COPPE datamodel fields (BR extensions)]
+
+\DeclareDatamodelFields[type=field,datatype=literal]{ementa,modalidade,objeto,dousection}
+
+\DeclareDatamodelEntryfields[entrytype=legislation]{ementa}
+
+\DeclareDatamodelEntryfields[entrytype=report]{modalidade,objeto}
+
+\DeclareDatamodelEntryfields[entrytype=article]{dousection}
+
+\endinput

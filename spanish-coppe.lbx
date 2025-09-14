@@ -1,0 +1,20 @@
+\ProvidesFile{spanish-coppe.lbx}[2025/09/13 ES strings]
+
+\NewBibliographyString{editalmod}
+\NewBibliographyString{editalobj}
+\NewBibliographyString{by}
+
+\InheritBibliographyStrings{spanish}
+
+\DeclareBibliographyStrings{
+and={{y}{y}},
+andothers={{et\addabbrvspace al\adddot}{et\addabbrvspace al\adddot}},
+by={{por}{por}},
+in={{En}{En}},
+url={{Disponible\space en}{Disponible\space en}},
+urlseen={{Consultado\space el}{Consultado\space el}},
+editalmod={{Modalidad}{Modalidad}},
+editalobj={{Objeto}{Objeto}}
+}
+
+\DeclareBibliographyExtras{\renewcommand*{\finalandcomma}{}}\endinput

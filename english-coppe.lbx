@@ -1,0 +1,20 @@
+\ProvidesFile{english-coppe.lbx}[2025/09/13 EN strings]
+
+\NewBibliographyString{editalmod}
+\NewBibliographyString{editalobj}
+\NewBibliographyString{by}
+
+\InheritBibliographyStrings{english}
+
+\DeclareBibliographyStrings{
+and={{and}{and}},
+andothers={{et\addabbrvspace al\adddot}{et\addabbrvspace al\adddot}},
+by={{by}{by}},
+in={{In}{In}},
+url={{Available\space at}{Available\space at}},
+urlseen={{Accessed\space on}{Accessed\space on}},
+editalmod={{Modality}{Modality}},
+editalobj={{Object}{Object}}
+}
+
+\DeclareBibliographyExtras{\protected\def\finalandcomma{\addcomma}}\endinput

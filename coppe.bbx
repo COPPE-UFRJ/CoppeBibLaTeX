@@ -1,0 +1,193 @@
+%%% styles/coppe.bbx
+\ProvidesFile{coppe.bbx}[2025/09/13 COPPE Multi-language BibLaTeX style (PT/EN/ES)]
+
+\RequireBibliographyStyle{authoryear}
+
+\ExecuteBibliographyOptions{
+maxnames=3,
+minnames=1,
+giveninits=false,
+date=year,
+terseinits=false,
+uniquename=false,
+isbn=false,
+url=true,
+doi=true,
+eprint=true}
+
+\DeclareLabelname{
+  \field{author}
+  \field{editor}
+  \field{translator}
+  \field{bookauthor}
+}
+
+\DeclareLabelname[legislation]{
+  \field{author}
+  \field{editor}
+  \field{translator}
+  \field{bookauthor}
+}
+\DeclareLabelname[report]{
+  \field{author}
+  \field{editor}
+  \field{translator}
+  \field{bookauthor}
+}
+
+\DeclareLabeldate{
+\field{year}
+\field{origdate}
+\field{date}
+}
+
+\DeclareLabeltitle{
+\field{title}
+}
+
+\DeclareLabeltitle[legislation]{
+\field{title}
+}
+
+
+\DeclareNameAlias{default}{family-given}
+
+\DeclareFieldFormat{url}{\bibstring{url}\addcolon\space\url{#1}}
+
+\DeclareFieldFormat{citetitle}{#1}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    % organization -> author (only if author is empty)
+    \map{
+      \step[fieldsource=author, match=\regexp{.+}, final]
+      \step[fieldsource=organization, fieldset=author, origfieldval]
+    }
+    % institution -> author (only if author is empty)
+    \map{
+      \step[fieldsource=author, match=\regexp{.+}, final]
+      \step[fieldsource=institution, fieldset=author, origfieldval]
+    }
+  }
+}
+
+
+
+
+\renewbibmacro*{url+urldate}{\iffieldundef{url}{}{\printfield{url}\setunit{\addperiod\space}\printurldate}}
+
+\renewbibmacro*{doi+eprint+url}{\iftoggle{bbx:doi}{\printfield{doi}}{}\newunit\newblock\iftoggle{bbx:eprint}{\usebibmacro{eprint}}{}\newunit\newblock\iftoggle{bbx:url}{\iffieldundef{doi}{\usebibmacro{url+urldate}}{}}{}}
+
+\newbibmacro*{coppe:artworklike}{\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\iffieldundef{location}{}{\printlist{location}\setunit{\addcomma\space}}\printdate\newunit\newblock\usebibmacro{url+urldate}}
+
+\DeclareBibliographyDriver{article}{
+\usebibmacro{bibindex}
+\usebibmacro{begentry}
+\usebibmacro{author/translator+others}
+\setunit{\labelnamepunct}
+\newblock
+\usebibmacro{title}
+\newunit
+\newblock
+\iffieldequalstr{entrysubtype}{magazineonline}{\printtext{\mkbibemph{\printfield{journaltitle}}}
+\setunit{\addcomma\space}
+\printdate\newunit\newblock\printfield{note}
+\newunit
+\newblock
+\usebibmacro{url+urldate}}
+{%
+	\iffieldequalstr{entrysubtype}{newspaper}{%
+		\printtext{\mkbibemph{\printfield{journaltitle}}}
+		\iffieldundef{issue}{}{%
+			\setunit{\addcomma\space}\printfield{issue}
+		}
+  		\newunit\newblock\printdate\iffieldundef{note}{}{\setunit{\addcomma\space}\printfield{note}}\iffieldundef{pages}{}{\setunit{\addcomma\space}\printfield{pages}}
+  		\newunit
+  		\newblock
+  		\usebibmacro{url+urldate}
+  	}
+	{%
+		\iffieldequalstr{entrysubtype}{dou}{%
+			\printtext{\mkbibemph{\printfield{journaltitle}}}
+			\iffieldundef{dousection}{}{\setunit{\addcomma\space}
+			\printfield{dousection}}
+			\iffieldundef{number}{}{
+				\setunit{\addcomma\space}\printfield{number}
+			}
+			\newunit
+			\newblock\
+			printdate
+		\iffieldundef{note}{}{\setunit{\addcomma\space}\printfield{note}}
+		\iffieldundef{pages}{}{\setunit{\addcomma\space}\printfield{pages}}
+		\newunit
+		\newblock
+		\usebibmacro{url+urldate}
+		}
+		{%
+		  \usebibmacro{journal+issuetitle}
+		  \newunit\usebibmacro{date}
+		  \setunit*{\addcomma\space}
+		  \usebibmacro{volume+number+eid}
+		  \setunit{\addcomma\space}
+		  \usebibmacro{issue+date}
+		\newunit
+		\newblock
+		\usebibmacro{note+pages}
+		\newunit
+		\newblock
+  		\usebibmacro{doi+eprint+url}}
+  	}
+}%
+  \usebibmacro{finentry}}
+
+
+
+\DeclareBibliographyDriver{report}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author/editor+others}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit
+  \iffieldequalstr{entrysubtype}{edital}{\printlist{institution}\iffieldundef{institution}{}{\setunit{\addcomma\space}}\iffieldundef{number}{}{\printfield{number}}\iffieldundef{location}{}{\setunit{\addcomma\space}\printlist{location}}\setunit{\addcomma\space}\printdate\iffieldundef{modalidade}{}{\newunit\newblock\bibstring{editalmod}\addcolon\space\printfield{modalidade}}\iffieldundef{objeto}{}{\iffieldundef{modalidade}{\newunit\newblock}{\setunit{\addsemicolon\space}}\bibstring{editalobj}\addcolon\space\printfield{objeto}}\newunit\newblock\usebibmacro{url+urldate}}{%
+  \printlist{institution}\iffieldundef{institution}{\iffieldundef{organization}{}{\setunit{\addcomma\space}\printlist{organization}}}{\setunit{\addcomma\space}}\printfield{type}\iffieldundef{number}{}{\setunit{\addspace}\printfield{number}}\iffieldundef{location}{}{\setunit{\addcomma\space}\printlist{location}}\setunit{\addcomma\space}\printdate\newunit\newblock\usebibmacro{doi+eprint+url}}%
+  \usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{legislation}{\usebibmacro{bibindex}\usebibmacro{begentry}\iffieldundef{institution}{}{\printfield{institution}\adddot\space}\printfield[titlecase]{title}\iffieldundef{type}{}{\setunit{\addspace}\printfield{type}}\iffieldundef{number}{}{\setunit{\addspace}\printfield{number}}\newunit\newblock\printlist{location}\iffieldundef{location}{}{\setunit{\addcomma\space}}\printdate\iffieldundef{ementa}{}{\newunit\newblock\printfield{ementa}}\newunit\newblock\usebibmacro{url+urldate}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{book}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author/editor+others}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\setunit{\addspace}\printfield{edition}\newunit\newblock\printfield{series}\iffieldundef{series}{}{\setunit{\addspace}\printfield{number}}\iffieldundef{volume}{}{\setunit{\addcomma\space}\printfield{volume}}\newunit\newblock\usebibmacro{publisher+location+date}\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{incollection}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author/translator+others}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\usebibmacro{in:}\usebibmacro{maintitle+booktitle}\newunit\usebibmacro{byeditor+others}\setunit{\addspace}\printfield{edition}\newunit\newblock\usebibmacro{publisher+location+date}\newunit\newblock\usebibmacro{chapter+pages}\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{inbook}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author/translator+others}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\usebibmacro{in:}\usebibmacro{maintitle+booktitle}\setunit{\addspace}\printfield{edition}\newunit\newblock\usebibmacro{publisher+location+date}\newunit\newblock\usebibmacro{chapter+pages}\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{inproceedings}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author/translator+others}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\usebibmacro{in:}\printfield{booktitle}\iffieldundef{eventtitle}{}{\setunit{\addcomma\space}\printfield{eventtitle}}\iffieldundef{eventdate}{}{\setunit{\addspace}\printeventdate}\newunit\newblock\usebibmacro{publisher+location+date}\newunit\newblock\printfield{pages}\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{proceedings}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{editor+others}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{eventtitle}{}{\setunit{\addspace}\printfield{eventtitle}}\iffieldundef{eventdate}{}{\setunit{\addspace}\printeventdate}\newunit\newblock\usebibmacro{publisher+location+date}\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{thesis}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\printfield{type}\iffieldundef{institution}{}{\setunit{\addspace}\printfield{institution}}\iffieldundef{location}{}{\setunit{\addcomma\space}\printlist{location}}\setunit{\addcomma\space}\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{standard}{\usebibmacro{bibindex}\usebibmacro{begentry}\printfield[titlecase]{title}\iffieldundef{type}{}{\setunit{\addspace}\printfield{type}}\iffieldundef{number}{}{\setunit{\addspace}\printfield{number}}\newunit\newblock\printlist{organization}\iffieldundef{organization}{}{\setunit{\addcomma\space}}\printfield{edition}\iffieldundef{location}{}{\setunit{\addcomma\space}\printlist{location}}\setunit{\addcomma\space}\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{online}{\usebibmacro{bibindex}\usebibmacro{begentry}\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{manual}{\usebibmacro{bibindex}\usebibmacro{begentry}\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\setunit{\addspace}\printfield{edition}\newunit\newblock\iffieldundef{location}{}{\printlist{location}\setunit{\addcomma\space}}\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{dataset}{\usebibmacro{bibindex}\usebibmacro{begentry}\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{version}{}{\setunit{\addspace}\printfield{version}}\newunit\newblock\iffieldundef{publisher}{}{\printlist{publisher}\setunit{\addcomma\space}}\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{software}{\usebibmacro{bibindex}\usebibmacro{begentry}\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{version}{}{\setunit{\addspace}\printfield{version}}\newunit\newblock\iffieldundef{publisher}{}{\printlist{publisher}\setunit{\addcomma\space}}\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{patent}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{number}{}{\setunit{\addspace}\printfield{number}}\iffieldundef{holder}{}{\setunit{\addspace}\printnames{holder}}\newunit\newblock\iffieldundef{location}{}{\printlist{location}\setunit{\addcomma\space}}\printdate\newunit\newblock\usebibmacro{url+urldate}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{video}{\usebibmacro{bibindex}\usebibmacro{begentry}\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{series}{}{\setunit{\addspace}\printfield{series}}\iffieldundef{number}{}{\setunit{\addspace}\printfield{number}}\newunit\newblock\printdate\newunit\newblock\usebibmacro{url+urldate}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{audio}{\usebibmacro{bibindex}\usebibmacro{begentry}\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{series}{}{\setunit{\addspace}\printfield{series}}\iffieldundef{number}{}{\setunit{\addspace}\printfield{number}}\newunit\newblock\printdate\newunit\newblock\usebibmacro{url+urldate}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{artwork}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{coppe:artworklike}\usebibmacro{finentry}}
+\DeclareBibliographyDriver{image}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{coppe:artworklike}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{pressrelease}{\usebibmacro{bibindex}\usebibmacro{begentry}\printlist{organization}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\printdate\newunit\newblock\usebibmacro{url+urldate}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{letter}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{type}{}{\setunit{\addspace}\printfield{type}}\iffieldundef{recipient}{}{\setunit{\addspace}\printnames{recipient}}\newunit\newblock\printdate\newunit\newblock\usebibmacro{url+urldate}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{unpublished}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{interview}{\usebibmacro{bibindex}\usebibmacro{begentry}\usebibmacro{author}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\iffieldundef{interviewer}{}{\newunit\newblock\printtext{\bibstring{by}\space\printnames{interviewer}}}\newunit\newblock\iffieldundef{location}{}{\printlist{location}\setunit{\addcomma\space}}\printdate\newunit\newblock\usebibmacro{url+urldate}\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{misc}{\usebibmacro{bibindex}\usebibmacro{begentry}\ifnameundef{author}{\printlist{organization}}{\usebibmacro{author/translator+others}}\setunit{\labelnamepunct}\newblock\usebibmacro{title}\newunit\newblock\printdate\newunit\newblock\usebibmacro{doi+eprint+url}\usebibmacro{finentry}}
+
+\endinput

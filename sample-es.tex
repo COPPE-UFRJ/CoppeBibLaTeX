@@ -1,0 +1,83 @@
+%%% examples/sample-es.tex
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=coppe,citestyle=coppe,language=auto,autolang=other,sorting=nyt]{biblatex}
+\DeclareLanguageMapping{brazilian}{brazilian-coppe}
+\DeclareLanguageMapping{english}{english-coppe}
+\DeclareLanguageMapping{spanish}{spanish-coppe}
+\addbibresource{refs.bib}
+\title{Ejemplo COPPE (ES): \string\printurldate, \string\printeventdate y año sin \string\urldate}
+\author{Equipo COPPE}
+\date{\today}
+\begin{document}\maketitle
+\section*{Artículos}
+\citet{art-1-complete-doi}; \citep{art-1-complete-doi}.
+\citet{art-2-missing-doi-has-url}; \citep{art-2-missing-doi-has-url}.
+\citet{art-3-missing-author}; \citep{art-3-missing-author}.
+\citet{mag-1-complete}; \citep{mag-1-complete}.
+\citet{mag-2-missing-url}; \citep{mag-2-missing-url}.
+\citet{news-1-complete}; \citep{news-1-complete}.
+\citet{news-2-missing-pages}; \citep{news-2-missing-pages}.
+\citet{dou-1-complete}; \citep{dou-1-complete}.
+\citet{dou-2-missing-dousection}; \citep{dou-2-missing-dousection}.
+\section*{Informes y convocatorias}
+\citet{rep-1-generic-complete}; \citep{rep-1-generic-complete}.
+\citet{rep-2-generic-missing-org}; \citep{rep-2-generic-missing-org}.
+\citet{edital-1-complete}; \citep{edital-1-complete}.
+\citet{edital-2-missing-modalidade}; \citep{edital-2-missing-modalidade}.
+\citet{edital-3-missing-objeto}; \citep{edital-3-missing-objeto}.
+\section*{Legislación}
+\citet{leg-1-complete}; \citep{leg-1-complete}.
+\citet{leg-2-missing-ementa}; \citep{leg-2-missing-ementa}.
+\section*{Libros y capítulos}
+\citet{book-1-complete}; \citep{book-1-complete}.
+\citet{book-2-missing-author-has-editor}; \citep{book-2-missing-author-has-editor}.
+\citet{book-3-missing-publisher-location}; \citep{book-3-missing-publisher-location}.
+\citet{incoll-1-complete}; \citep{incoll-1-complete}.
+\citet{incoll-2-missing-editor}; \citep{incoll-2-missing-editor}.
+\citet{inbook-1-complete}; \citep{inbook-1-complete}.
+\citet{inbook-2-missing-edition}; \citep{inbook-2-missing-edition}.
+\section*{Actas y eventos (\string\printeventdate)}
+\citet{inproc-1-complete}; \citep{inproc-1-complete}.
+\citet{inproc-2-missing-event}; \citep{inproc-2-missing-event}.
+\citet{proc-1-complete}; \citep{proc-1-complete}.
+\citet{proc-2-missing-event}; \citep{proc-2-missing-event}.
+\section*{Académicos, normas y web}
+\citet{thesis-1-complete}; \citep{thesis-1-complete}.
+\citet{thesis-2-missing-type-institution}; \citep{thesis-2-missing-type-institution}.
+\citet{std-1-complete}; \citep{std-1-complete}.
+\citet{std-2-missing-organization-number}; \citep{std-2-missing-organization-number}.
+\citet{online-1-with-doi}; \citep{online-1-with-doi}.
+\textbf{Sin fecha}: \citet{online-2-url-only-no-date}; \citep{online-2-url-only-no-date}.
+\section*{Manuales, datos y software}
+\citet{manual-1-complete}; \citep{manual-1-complete}.
+\citet{manual-2-missing-org}; \citep{manual-2-missing-org}.
+\citet{dataset-1-complete-doi}; \citep{dataset-1-complete-doi}.
+\citet{dataset-2-url-only}; \citep{dataset-2-url-only}.
+\citet{soft-1-complete}; \citep{soft-1-complete}.
+\citet{soft-2-missing-version-date}; \citep{soft-2-missing-version-date}.
+\section*{Patentes y medios}
+\citet{pat-1-complete}; \citep{pat-1-complete}.
+\citet{pat-2-missing-holder}; \citep{pat-2-missing-holder}.
+\citet{video-1-complete}; \citep{video-1-complete}.
+\citet{video-2-missing-author-has-org}; \citep{video-2-missing-author-has-org}.
+\citet{audio-1-complete}; \citep{audio-1-complete}.
+\citet{audio-2-missing-number}; \citep{audio-2-missing-number}.
+\citet{art-obj-1-complete}; \citep{art-obj-1-complete}.
+\citet{img-1-missing-author-has-org}; \citep{img-1-missing-author-has-org}.
+\citet{press-1-complete}; \citep{press-1-complete}.
+\citet{press-2-missing-url}; \citep{press-2-missing-url}.
+\citet{letter-1-complete}; \citep{letter-1-complete}.
+\citet{letter-2-missing-recipient}; \citep{letter-2-missing-recipient}.
+\citet{unpub-1-complete}; \citep{unpub-1-complete}.
+\citet{unpub-2-missing-date}; \citep{unpub-2-missing-date}.
+\citet{interv-1-complete}; \citep{interv-1-complete}.
+\citet{interv-2-missing-interviewer}; \citep{interv-2-missing-interviewer}.
+\citet{misc-1-complete}; \citep{misc-1-complete}.
+\citet{misc-2-missing-author-date}; \citep{misc-2-missing-author-date}.
+\printbibliography[title={Referencias}]
+\end{document}

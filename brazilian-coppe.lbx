@@ -1,0 +1,22 @@
+\ProvidesFile{brazilian-coppe.lbx}[2025/09/13 PT-BR strings]
+
+\InheritBibliographyStrings{brazilian}
+
+\NewBibliographyString{editalmod}
+\NewBibliographyString{editalobj}
+\NewBibliographyString{by}
+
+\DeclareBibliographyStrings{%
+and={{e}{e}},
+andothers={{et\addabbrvspace al\adddot}{et\addabbrvspace al\adddot}},
+by={{por}{por}},
+in={{Em}{Em}},
+url={{Disponível\space em}{Disponível\space em}},
+urlseen={{Acesso\space em}{Acesso\space em}},
+editalmod={{Modalidade}{Modalidade}},
+editalobj={{Objeto}{Objeto}}
+}
+
+\DeclareDelimFormat{finalnamedelim}{\addspace\bibstring{and}\space}
+
+\endinput

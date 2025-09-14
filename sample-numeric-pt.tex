@@ -1,0 +1,21 @@
+%%% examples/sample-numeric-pt.tex
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=coppe-numeric,citestyle=coppe-numeric,language=auto,autolang=other,sorting=none]{biblatex}
+\DeclareLanguageMapping{brazilian}{brazilian-coppe}
+\DeclareLanguageMapping{english}{english-coppe}
+\DeclareLanguageMapping{spanish}{spanish-coppe}
+\addbibresource{refs.bib}
+\title{COPPE (PT-BR) — Exemplo Numérico}
+\author{Time COPPE}
+\date{\today}
+\begin{document}\maketitle
+Chamadas: \citep{art-1-complete-doi}, \citep{art-2-missing-doi-has-url}, \citep{edital-1-complete}, \citep{leg-1-complete},
+\citep{inproc-1-complete}, \citep{proc-1-complete}, \citep{online-2-url-only-no-date}, \citep{soft-1-complete}, \citep{press-1-complete}, \citep{interv-1-complete}.
+Forma textual: \citet{book-1-complete}; \citet{news-1-complete}.
+\printbibliography[title={Referências (ordem de citação)}]
+\end{document}
